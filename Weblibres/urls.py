@@ -15,8 +15,19 @@ Including another URLconf
 """
 from django.conf.urls import url, include
 from django.contrib import admin
+from Weblibres import settings
+from django.conf.urls.static import static
+import media
+
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^repositorio/', include('apps.repositorio.urls')),
+    url(r'^repositorio/', include('apps.repositorio.urls',namespace='repositorio')),
+    url(r'^objetos/', include('apps.objeto.urls',namespace='objetos')),
+
 ]
+"""
+if settings.DEBUG:
+    urlpatterns+=static(settings.STATIC_URL,document_root=settings.STATIC_URL)
+    urlpatterns+=static(settings.MEDIA_URL,document_root=settings.MEDIA_URL)
+"""

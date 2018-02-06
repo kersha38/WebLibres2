@@ -1,4 +1,7 @@
 from django.db import models
+
+# Create your models here.
+from django.db import models
 class Facultad(models.Model):
     nombre_Facultad=models.CharField(max_length=30)
     def __str__(self):
@@ -9,28 +12,6 @@ class Departamento(models.Model):
     nombre_Dept=models.CharField(max_length=30)
     def __str__(self):
         return self.nombre_Dept
-
-# Create your models here.
-class usuario(models.Model):
-    nick=models.CharField(max_length=15)
-    clave=models.CharField(max_length=15)
-    correo=models.EmailField()
-    cedula=models.CharField(max_length=13)
-    nombre=models.CharField(max_length=15)
-    apellido = models.CharField(max_length=15)
-    #departamento=models.CharField(max_length=15)
-    #facultad=models.CharField(max_length=15)
-    departamento=models.ForeignKey(Departamento,null=True,blank=True,on_delete=None)
-    facultad= models.ForeignKey(Facultad, null=True, blank=True, on_delete=None)
-    def __str__(self):
-        return self.nick
-
-class PermisoUsuario(models.Model):
-    usuario=models.OneToOneField(usuario)
-    tipo=models.CharField(max_length=10,choices=(('e','estudiante'),('p','profesor')))
-
-    def __str__(self):
-        return self.tipo
 
 
 class tema(models.Model):
