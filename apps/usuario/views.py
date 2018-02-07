@@ -44,11 +44,10 @@ def crearUsuario(request):
             email=emailR, password=passwordR)
 
             # enlazar registroUsuario y usuario
-            """
-            form.cleaned_data['user']=usernameR
-            form.save()
-            """
-
+            ru=RegistroUsuario.objects.get(username=usernameR)
+            us=User.objects.get(username=usernameR)
+            ru.user=us
+            ru.save()
 
             # enviar mail
             msg='Hola su registro ha sido completado\n' \
@@ -62,7 +61,7 @@ def crearUsuario(request):
                 fail_silently=False,
             )
 
-            return reverse_lazy('objetos:listaObjetos')
+            return render(request, 'index.html')
     else:
         form = registroForm
     return render(request, 'usuario/registro_form.html', {'form': form})
