@@ -6,7 +6,10 @@ from apps.objeto.forms import objetoAForm
 from django.http import HttpResponse, Http404
 import os
 from django.conf import settings
+from django.core.files import File
 from django.contrib.auth.decorators import permission_required
+from django.core.mail import send_mail
+from django.core import mail
 
 
 # Create your views here.
@@ -29,8 +32,8 @@ def upload_file(request):
     if request.method == 'POST':
         form = objetoAForm(request.POST, request.FILES)
         if form.is_valid():
-            # file is saved
             form.save()
+
             return reverse_lazy('objetos:listaObjetos')
     else:
         form = objetoAForm()
@@ -56,3 +59,34 @@ def download(request, path):
             response['Content-Disposition'] = 'inline; filename=' + os.path.basename(file_path)
             return response
     raise Http404
+
+def down2(request, path_to_file):
+    f = open(path_to_file, 'r')
+    myfile = File(f)
+    response = HttpResponse(myfile, content_type='application/vnd.ms-excel')
+    response['Content-Disposition'] = 'attachment; filename=' + path_to_file
+    return response
+
+
+# cataloga automaticamente
+def auto(request):
+
+    send_mail(
+        'Hola Papu',
+        '😀 😀',
+        'proyecto.libres001@gmail.com',
+        ['kersha898@gmail.com'],
+        fail_silently=False,
+    )
+
+
+    foo_instance = objetoA.objects.create(nombre='carlos',
+                        descripcion='hola',
+                        autor='carlos',
+                        institucion='EPNN',
+                        fechaCreacion='2018-01-01',
+                        fechaIngreso='2018-01-01',
+                        palabras_clave='olakase',
+                        archivo='',
+                        tema=None)
+    #a=objetoA.nombre

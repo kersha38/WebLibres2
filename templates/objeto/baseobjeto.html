@@ -43,9 +43,11 @@
 
             <td>
                 <div>
+					{% if perms.usuario.esProfesor %}
                     <a  class="btn btn-Primary" href="{% url 'objetos:editaObjetos' objeto.id %}">Editar</a>
                     <a  class="btn btn-warning" href="{% url 'objetos:borraObjetos' objeto.id %}" >Eliminar</a>
-                    <a  class="btn btn-success" href="" >Descargar</a>
+					{% endif %}
+                    <a  class="btn btn-success" href="{% url 'objetos:down' objeto.archivo %}" >Descargar</a>
                 </div>
 
             </td>
