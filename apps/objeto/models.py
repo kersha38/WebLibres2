@@ -2,18 +2,6 @@ from django.db import models
 
 # Create your models here.
 from django.db import models
-class Facultad(models.Model):
-    nombre_Facultad=models.CharField(max_length=30)
-    def __str__(self):
-        return self.nombre_Facultad
-
-
-class Departamento(models.Model):
-    nombre_Dept=models.CharField(max_length=30)
-    def __str__(self):
-        return self.nombre_Dept
-
-
 class tema(models.Model):
     Nombre_tema=models.CharField(max_length=15)
     def __str__(self):

@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from apps.objeto.models import objetoA
-from django.views.generic import ListView,CreateView,UpdateView,DeleteView
+from django.views.generic import ListView,CreateView,UpdateView,DeleteView,TemplateView
 from django.core.urlresolvers import reverse_lazy
 from apps.objeto.forms import objetoAForm
 from django.http import HttpResponse, Http404
@@ -9,6 +9,7 @@ from django.conf import settings
 from django.core.files import File
 from django.contrib.auth.decorators import permission_required
 from django.core.mail import send_mail
+from django.db.models import Q
 from django.core import mail
 
 
@@ -70,23 +71,18 @@ def down2(request, path_to_file):
 
 # cataloga automaticamente
 def auto(request):
+    pass
 
-    send_mail(
-        'Hola Papu',
-        '😀 😀',
-        'proyecto.libres001@gmail.com',
-        ['kersha898@gmail.com'],
-        fail_silently=False,
-    )
+# busco objetos por tema o nombre, tags o descripcion
+class BuscarView(TemplateView):
+
+    def post(self, request, *args,**kwargs):
+        buscado=request.POST['buscado']
+        object_list = objetoA.objects.filter(Q(nombre__icontains=buscado)
+                                             |Q(palabras_clave__icontains=buscado)
+                                             | Q(tema__Nombre_tema__icontains=buscado)
+                                             | Q(descripcion__icontains=buscado)
+                                             | Q(autor__icontains=buscado))
 
 
-    foo_instance = objetoA.objects.create(nombre='carlos',
-                        descripcion='hola',
-                        autor='carlos',
-                        institucion='EPNN',
-                        fechaCreacion='2018-01-01',
-                        fechaIngreso='2018-01-01',
-                        palabras_clave='olakase',
-                        archivo='',
-                        tema=None)
-    #a=objetoA.nombre
+        return render(request,'objeto/baseobjeto.html',{'object_list':object_list})

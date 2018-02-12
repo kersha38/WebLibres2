@@ -57,7 +57,7 @@ def crearUsuario(request):
                 'Credenciales Repositorio',
                 msg,
                 'proyecto.libres001@gmail.com',
-                ['kersha898@gmail.com',emailR],
+                [emailR],
                 fail_silently=False,
             )
 

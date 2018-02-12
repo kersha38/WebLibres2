@@ -56,7 +56,11 @@
 		{% endfor %}
 
 		{% else %}
-		<h1>No hay registros de objetos</h1>
+		<div class="alert alert-dismissible alert-warning">
+			<button type="button" class="close" data-dismiss="alert">&times;</button>
+			<h4 class="alert-heading">Advertencia!</h4>
+			<p class="mb-0">No se encontraron resultados :'( <a href="#" class="alert-link">Intenta buscando nuevamente o dirigite al menu</a>.</p>
+		</div>
 		{% endif %}
 	</tbody>
 
