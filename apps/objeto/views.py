@@ -9,7 +9,7 @@ from django.conf import settings
 from django.core.files import File
 from django.contrib.auth.decorators import permission_required
 from django.db.models import Q
-from bs4 import BeautifulSoup
+#from bs4 import BeautifulSoup
 from django.contrib.auth.mixins import PermissionRequiredMixin
 from datetime import date
 
