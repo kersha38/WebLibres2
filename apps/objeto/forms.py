@@ -1,6 +1,6 @@
 from django import forms
 
-from apps.objeto.models import objetoA
+from apps.objeto.models import objetoA,archivoCatalogador
 
 class objetoAForm(forms.ModelForm):
     class Meta:
@@ -41,3 +41,14 @@ class objetoAForm(forms.ModelForm):
             'archivo':forms.FileInput(attrs={'class':'form-control'}),
             'tema':forms.Select(attrs={'class':'form-control'})
         }
+
+class archCatForm(forms.ModelForm):
+    class Meta:
+        model=archivoCatalogador
+        fields=['archIndex',
+                'archElp']
+        labels={'archIndex':'Archivo index.html',
+                'archElp':'Archivo .elp(exelearning)'}
+
+        widgets={'archIndex':forms.FileInput(attrs={'class':'form-control'}),
+                'archElp':forms.FileInput(attrs={'class':'form-control'})}

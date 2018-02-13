@@ -1,11 +1,11 @@
 from django.conf.urls import url
 from apps.objeto.views import listaObjetos,crearObjeto,editarObjeto,borrarObjeto\
     ,upload_file,download,down2,auto,BuscarView
-
+from django.contrib.auth.decorators import login_required,permission_required
 
 urlpatterns = [
-    url(r'listar', listaObjetos.as_view(), name='listaObjetos'),
-    url(r'crear', crearObjeto.as_view(), name='creaObjetos'),
+    url(r'listar',listaObjetos.as_view(), name='listaObjetos'),
+    url(r'crear',crearObjeto.as_view(), name='creaObjetos'),
     url(r'editar/(?P<pk>\d+)/', editarObjeto.as_view(), name='editaObjetos'),
     url(r'borrar/(?P<pk>\d+)/', borrarObjeto.as_view(), name='borraObjetos'),
     url(r'down/(?P<path>.*)', download, name='down'),

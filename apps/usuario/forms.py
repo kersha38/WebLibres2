@@ -12,7 +12,8 @@ class registroForm(forms.ModelForm):
             'cedula',
             'email',
             'departamento',
-            'facultad'
+            'facultad',
+            'tipo'
         ]
 
         labels = {'username':'Username',
@@ -21,7 +22,8 @@ class registroForm(forms.ModelForm):
             'cedula':'Cedula',
             'email':'Correo',
             'departamento':'Departamento',
-            'facultad':'Facultad'
+            'facultad':'Facultad',
+            'tipo':'Tipo de usuario'
 
                   }
 
@@ -31,7 +33,8 @@ class registroForm(forms.ModelForm):
             'apellido':forms.TextInput(attrs={'class':'form-control'}),
             'cedula':forms.TextInput(attrs={'class':'form-control'}),
             'email':forms.EmailInput(attrs={'class':'form-control'}),
-            'departamento':forms.TextInput(attrs={'class':'form-control'}),
-            'facultad':forms.TextInput(attrs={'class':'form-control'})
+            'departamento':forms.Select(),
+            'facultad':forms.Select(),
+            'tipo':forms.Select(choices=(('e','estudiante'),('p','profesor')))
         }
 

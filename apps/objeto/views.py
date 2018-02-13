@@ -2,28 +2,26 @@ from django.shortcuts import render
 from apps.objeto.models import objetoA
 from django.views.generic import ListView,CreateView,UpdateView,DeleteView,TemplateView
 from django.core.urlresolvers import reverse_lazy
-from apps.objeto.forms import objetoAForm
+from apps.objeto.forms import objetoAForm,archCatForm
 from django.http import HttpResponse, Http404
 import os
 from django.conf import settings
 from django.core.files import File
 from django.contrib.auth.decorators import permission_required
-from django.core.mail import send_mail
 from django.db.models import Q
-from django.core import mail
-
+from bs4 import BeautifulSoup
+from django.contrib.auth.mixins import PermissionRequiredMixin
+from datetime import date
 
 # Create your views here.
 class listaObjetos(ListView):
     model=objetoA
     template_name='objeto/baseobjeto.html'
 
-    class meta:
-        permissions=(('esProfe','Da permiso de profesor'),
-                     ('esAlumno','Da permiso de alumno'))
 
-#@permission_required('repositorio.esProfe')
-class crearObjeto(CreateView):
+class crearObjeto(PermissionRequiredMixin,CreateView):
+    permission_required='usuario.esProfesor'
+    login_url = reverse_lazy('objetos:listaObjetos')
     model = objetoA
     form_class =objetoAForm
     template_name = 'objeto/objetoA_form.html'
@@ -71,7 +69,64 @@ def down2(request, path_to_file):
 
 # cataloga automaticamente
 def auto(request):
-    pass
+    if request.method == 'POST':
+        form = archCatForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            tituloR=''
+            autorR=''
+            descripcionR=''
+            palabras_claR=''
+            fechaR=str(date.today().year)+'-'+str(date.today().month)+'-'+str(date.today().day)
+            # archivo html
+            archCatR=str(form.cleaned_data['archIndex'])
+            archElpR = str(form.cleaned_data['archElp'])
+
+            arch = open(settings.MEDIA_ROOT+'\\archCat\\'+archCatR, 'r')
+            contenido = arch.read()
+            soup = BeautifulSoup(contenido, "html.parser")
+
+            tituloR=str(soup.title.string)
+            print(tituloR)
+            for tag in soup.find_all('meta'):
+
+                try:
+                    if tag.get('name') == 'author':
+                        autorR=tag.get('content')
+                        print(autorR)
+                except:
+                    pass
+
+                try:
+                    if tag.get('name') == 'description':
+                        descripcionR=tag.get('content')
+                        print(descripcionR)
+                        break
+                except:
+                    pass
+            for cla in tituloR.split(' '):
+                palabras_claR+=cla.strip('\n')
+            arch.close()
+
+            # inserto nuevo Objeto
+            foo_instance = objetoA.objects.create(
+                nombre=tituloR
+                , descripcion=descripcionR,
+                autor=autorR,
+                institucion='EPN',
+                fechaCreacion=fechaR,
+                fechaIngreso=fechaR,
+                palabras_clave=palabras_claR,
+                archivo=archElpR)
+
+            # foo_instance.save()
+
+            object_list2=objetoA.objects.all()
+            return render(request, 'objeto/baseobjeto.html', {'object_list': object_list2})
+    else:
+        form = archCatForm()
+    return render(request, 'objeto/archCat_form.html', {'form': form})
+
 
 # busco objetos por tema o nombre, tags o descripcion
 class BuscarView(TemplateView):

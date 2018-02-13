@@ -6,12 +6,8 @@ from apps.usuario.forms import registroForm
 from django.contrib.auth.models import User
 from django.utils.crypto import get_random_string
 from django.contrib.auth.hashers import make_password
-from django.http import HttpResponse, Http404
-import os
-from django.conf import settings
-from django.core.files import File
-from django.contrib.auth.decorators import permission_required
 from django.core.mail import send_mail
+
 
 # Create your views here.
 class registroUser(CreateView):
