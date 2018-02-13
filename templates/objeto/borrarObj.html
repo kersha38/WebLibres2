@@ -1,0 +1,18 @@
+{% extends 'base/base.html' %}
+{% block title %}Borrar Objeto de Aprendizaje{% endblock %}
+{% block cabeza %}<h1>Borrar Objeto</h1>{% endblock %}
+
+{% block content %}
+
+<form method="post" style="max-width: 40rem; margin-left: 200px;">
+    {% csrf_token %}
+    <h4 style="color:white;">Está seguro de eliminar al objeto {{object.id}} {{object.nombre}}</h4>
+    <button class="btn btn-warning" type="submit">Eliminar</button>
+    <a class="btn btn-info"  href="{% url 'objetos:listaObjetos' %}">no, regresar</a>
+</form>
+
+{% endblock %}
+
+{% block pie %}
+
+{% endblock %}

@@ -18,11 +18,6 @@
       <li class="nav-item active">
         <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
       </li>
-        {% block user%}
-      <li class="nav-item">
-        <a class="nav-link" href="#">Usuarios</a>
-      </li>
-        {% endblock %}
         {% block objetA%}
       <li class="nav-item">
         <a class="nav-link" href="#">Objetos Aprendizaje</a>
@@ -32,10 +27,12 @@
         <a class="nav-link" href="#">Acerca de..</a>
       </li>
     </ul>
-    <form class="form-inline my-2 my-lg-0">
-      <input class="form-control mr-sm-2" type="text" placeholder="Search">
-      <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
+    <form class="form-inline my-2 my-lg-0" method="post" action="/objetos/buscar">
+      {% csrf_token %}
+      <input class="form-control mr-sm-2" type="text" placeholder="Objeto" name="buscado">
+      <button class="btn btn-secondary my-2 my-sm-0" type="submit">Buscar</button>
     </form>
+      <li><a href="{% url 'logout' %}">Salir</a></li>
   </div>
 </nav>
 {% block cabeza %}

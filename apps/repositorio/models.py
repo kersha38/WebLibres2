@@ -45,8 +45,8 @@ class objetoA(models.Model):
     institucion=models.CharField(max_length=15)
     fechaCreacion=models.DateField(default="2018-01-30")
     fechaIngreso=models.DateField()
-    palabras_clave=models.CharField(max_length=30)
-    archivo=models.FileField()
+    palabras_clave=models.CharField(max_length=30, null=True)
+    archivo=models.FileField(null=True, blank=True )
     tema=models.ForeignKey(tema,null=True,blank=True,on_delete=None)
 
     def __str__(self):

@@ -1,0 +1,16 @@
+{% extends 'base/base.html' %}
+{% block title %}Cargar Objeto de Aprendizaje{% endblock %}
+{% block cabeza %}<h1>Carga Manual</h1>{% endblock %}
+
+{% block content %}
+
+{% endblock %}
+
+{% block pie %}
+<div class="jumbotron" style="max-width: 40rem; margin-left: 200px; background-color:White">
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Cargar</button>
+</form>
+</div>{% endblock %}

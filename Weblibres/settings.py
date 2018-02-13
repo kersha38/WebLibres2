@@ -11,8 +11,9 @@ https://docs.djangoproject.com/en/1.9/ref/settings/
 """
 
 import os
-
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
+from django.core.urlresolvers import reverse_lazy
+
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 
@@ -25,7 +26,7 @@ SECRET_KEY = '#h0q@k3_d)obo=b_c3kv3g#1)#@xl$o!ra=g3=friu#&!=3)(%'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -38,6 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'apps.repositorio',
+    'apps.objeto',
+    'apps.usuario',
 ]
 
 MIDDLEWARE_CLASSES = [
@@ -125,3 +128,15 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATICFILES_DIRS=(os.path.join(BASE_DIR,'static'),)
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+EMAIL_USE_TLS = True
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'proyecto.libres001@gmail.com'
+EMAIL_HOST_PASSWORD = 'ProyectoLibres001'
+#EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+
+LOGIN_REDIRECT_URL = reverse_lazy('objetos:listaObjetos')
+LOGOUT_REDIRECT_URL = reverse_lazy('login')

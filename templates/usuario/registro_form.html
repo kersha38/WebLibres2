@@ -1,0 +1,16 @@
+{% extends 'base/base.html' %}
+{% block title %}Registrar Usuario:3{% endblock %}
+{% block cabeza %}<h1>Solicitud Registro</h1>{% endblock %}
+
+{% block content %}
+
+{% endblock %}
+
+{% block pie %}
+<div class="jumbotron" style="max-width: 40rem; margin-left: 200px; background-color:White">
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Enviar</button>
+</form>
+</div>{% endblock %}

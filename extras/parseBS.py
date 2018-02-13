@@ -1,15 +1,23 @@
 from bs4 import BeautifulSoup
 
 # archivo html
-arch=open('prueba.html','r')
+arch=open('index.html','r')
 contenido=arch.read()
+soup = BeautifulSoup(contenido,"html.parser")
 
 
-soup = BeautifulSoup(contenido, "lxml")
+print (soup.title.string)
+for tag in soup.find_all('meta'):
 
-for tag in soup.find_all('string'):
+    try:
+        if tag.get('name')=='author':
+            print (tag.get('content'))
+    except:
+        pass
 
-    print (tag)
-
-print (soup.title)
-
+    try:
+        if tag.get('name')=='description':
+            print (tag.get('content'))
+            break
+    except:
+        pass
