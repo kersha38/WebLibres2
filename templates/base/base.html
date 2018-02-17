@@ -14,7 +14,7 @@
 
 			#header {
 				margin:auto;
-				width:400px;
+				width:600px;
 				font-family:Arial, Helvetica, sans-serif;
 			}
 
@@ -68,19 +68,27 @@
 		<div id="header">
 			<ul class="nav">
               <li class="nav-item active">
-				<li><a href="http://localhost:8000/repositorio/home">Home</a></li>
+				<li><a href="{% url 'repositorio:home' %}">Home</a></li>
               </li>
               <li class="nav-item">
 				<li><a href="">Objetos de aprendizaje</a>
 					<ul>
-						<li><a href="#">Crear</a></li>
-						<li><a href="#">Listar</a></li>
+						<li><a href="http://localhost:51235/newPackage">Crear</a></li>
+						<li><a href="{% url 'objetos:listaObjetos' %}">Listar</a></li>
+						<li><a href="{% url 'repositorio:herramienta' %}">Herramientas Adicionales</a></li>
 					</ul>
 				</li>
               </li>
 
-				<li><a href="">Catalogar</a></li>
+				<li class="nav-item">
+				<li><a href="">Catalogar</a>
+					<ul>
+						<li><a href="{% url 'objetos:creaObj' %}">Manual</a></li>
+						<li><a href="{% url 'objetos:autoo' %}">Automatico</a></li>
 
+					</ul>
+				</li>
+              </li>
 			</ul>
 
     </div>

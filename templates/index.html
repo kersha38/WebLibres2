@@ -54,10 +54,12 @@
     	<div class="col-md-6 col-md-offset-3">
     		<div class="form-group">
 				<br>
-				<center><button class="btn btn-primary"  href="http://localhost:8000/repositorio/" type="submit">Ingresar</button></center>
+				<center><button class="btn btn-primary"  href="{%url 'repositorio:home'%}" type="submit">Ingresar</button></center>
+				<p class="login__signup">No tienes una cuenta aún? &nbsp;
+					<a href="{% url 'usuario:crearU' %}">Registrarse</a>
+				</p>
 
-                <br><a href="{% url 'password_reset' %}">Olvidé mi contraseña</a>
-				<a href="http://localhost:8000/usuario/registrar">Registrarse</a>
+
 
     	   </div>
         </div>
