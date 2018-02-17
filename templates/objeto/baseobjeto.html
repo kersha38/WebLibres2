@@ -1,0 +1,70 @@
+{% extends 'base/base.html' %}
+{% block title %}Lista Objetos{% endblock %}
+{% block cabeza %}
+<h2>Listado de objetos de Aprendizaje</h2>
+{% endblock %}
+
+{% block pie %}
+{% endblock %}
+
+{% block content %}
+
+<table class="table table-hover">
+	<thead>
+		<tr class="table-info">
+			<td>#</td>
+			<td>Nombre</td>
+			<td>Descripcion</td>
+			<td>autor</td>
+			<td>Institucion</td>
+			<td>Fecha Creacion</td>
+            <td>Fecha Ingreso</td>
+			<td>palabras clave</td>
+			<td>Archivo</td>
+            <td>tema</td>
+            <td>Menu</td>
+		</tr>
+
+	</thead>
+	<tbody>
+		{% if object_list %}
+		{% for objeto in object_list %}
+		<tr class="table-Light">
+			<td>{{ objeto.id }}</td>
+			<td>{{ objeto.nombre }}</td>
+			<td>{{ objeto.descripcion }}</td>
+			<td>{{ objeto.autor }}</td>
+			<td>{{ objeto.institucion }}</td>
+			<td>{{ objeto.fechaCreacion }}</td>
+            <td>{{ objeto.fechaIngreso }}</td>
+            <td>{{ objeto.palabras_clave }}</td>
+            <td>{{ objeto.archivo }}</td>
+            <td>{{ objeto.tema }}</td>
+
+            <td>
+                <div>
+					{% if perms.usuario.esProfesor %}
+                    <a  class="btn btn-Primary" href="{% url 'objetos:editaObjetos' objeto.id %}">Editar</a>
+                    <a  class="btn btn-warning" href="{% url 'objetos:borraObjetos' objeto.id %}" >Eliminar</a>
+					{% endif %}
+                    <a  class="btn btn-success" href="{% url 'objetos:down' objeto.archivo %}" >Descargar</a>
+                </div>
+
+            </td>
+
+		</tr>
+		{% endfor %}
+
+		{% else %}
+		<div class="alert alert-dismissible alert-warning">
+			<button type="button" class="close" data-dismiss="alert">&times;</button>
+			<h4 class="alert-heading">Advertencia!</h4>
+			<p class="mb-0">No se encontraron resultados :'( <a href="#" class="alert-link">Intenta buscando nuevamente o dirigite al menu</a>.</p>
+		</div>
+		{% endif %}
+	</tbody>
+
+
+{% endblock%}
+</table>
+

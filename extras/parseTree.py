@@ -8,5 +8,4 @@ def cataloga(archivo):
         rank = country.find('rank').text
         name = country.get('name')
         print(name, rank)
-
-cataloga('prueba.html')
+#cataloga('prueba.html')
