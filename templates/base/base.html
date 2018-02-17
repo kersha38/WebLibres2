@@ -14,7 +14,7 @@
 
 			#header {
 				margin:auto;
-				width:600px;
+				width:400px;
 				font-family:Arial, Helvetica, sans-serif;
 			}
 
@@ -62,7 +62,7 @@
 	<body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
       <a class="navbar-brand" href="#">Sistema de gestión de objeto de aprendizaje</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="true" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
 		<div id="header">
@@ -75,23 +75,23 @@
 					<ul>
 						<li><a href="#">Crear</a></li>
 						<li><a href="#">Listar</a></li>
-						<li><a href="#">Borrar</a></li>
-						<li><a href="#">Editar</a></li>
 					</ul>
 				</li>
               </li>
-				<li><a href="">Usuario</a>
-					<ul>
-						<li><a href="">Profesor</a></li>
-						<li><a href="">Estudiante</a></li>
 
-					</ul>
-				</li>
 				<li><a href="">Catalogar</a></li>
-                <li><a href="">Buscar</a></li>
+
 			</ul>
 
     </div>
+			<form class="form-inline my-2 my-lg-0" method="post" action="/objetos/buscar">
+					{% csrf_token %}
+					<input class="form-control mr-sm-2" type="text" placeholder="Objeto" name="buscado">
+					<button class="btn btn-secondary my-2 my-sm-0" type="submit">Buscar</button>
+				</form>
+
+
+				<li><a href="{% url 'logout' %}">Salir</a></li>
     </nav>
 
 {% block cabeza %}
