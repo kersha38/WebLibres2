@@ -1,6 +1,6 @@
 from django import forms
 
-from apps.objeto.models import objetoA,archivoCatalogador
+from apps.objeto.models import objetoA,archivoCatalogador,comentario
 
 class objetoAForm(forms.ModelForm):
     class Meta:
@@ -52,3 +52,10 @@ class archCatForm(forms.ModelForm):
 
         widgets={'archIndex':forms.FileInput(attrs={'class':'form-control'}),
                 'archElp':forms.FileInput(attrs={'class':'form-control'})}
+
+class comentFrom(forms.ModelForm):
+    class Meta:
+        model=comentario
+        fields=['comentariotxt']
+        labels={'comentariotxt':'Comentario'}
+        widgets={'comentariotxt':forms.TextInput(attrs={'class':'form-control'})}

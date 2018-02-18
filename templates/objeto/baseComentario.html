@@ -1,0 +1,46 @@
+{% extends 'base/base.html' %}
+{% block title %}Lista de Comentarios{% endblock %}
+{% block cabeza %}
+<h2>Lista de Comentarios</h2>
+{% endblock %}
+
+{% block pie %}
+{% endblock %}
+
+{% block content %}
+
+<table class="table table-hover">
+	<thead>
+		<tr class="table-info">
+			<td>#</td>
+			<td>Comentario</td>
+		</tr>
+
+	</thead>
+	<tbody>
+		{% if object_list %}
+		{% for objet in object_list %}
+
+		<tr class="table-Light">
+			<td>{{ objet.id }}</td>
+			<td>{{ objet.comentariotxt }}</td>
+		</tr>
+		{% endfor %}
+
+		{% else %}
+		<div class="alert alert-dismissible alert-warning">
+			<button type="button" class="close" data-dismiss="alert">&times;</button>
+			<h4 class="alert-heading">Advertencia!</h4>
+			<p class="mb-0">No se encontraron COMENTARIOS :'( <a href="#" class="alert-link">Intenta buscando nuevamente o dirigite al menu</a>.</p>
+		</div>
+		{% endif %}
+	</tbody>
+	{% if object_list %}
+	<a  class="btn btn-success" href="{% url 'objetos:newComent' object_list.0.objeto.id %}" >Nuevo Comentario</a>
+	{% else %}
+	{% endif %}
+	<a  class="btn btn-secondary" type="submit" href="{% url 'objetos:listaObjetos' %}" >Regresar</a>
+
+{% endblock%}
+</table>
+

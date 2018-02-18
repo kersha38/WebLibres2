@@ -23,6 +23,7 @@
 			<td>Archivo</td>
             <td>tema</td>
             <td>Menu</td>
+			<td></td>
 		</tr>
 
 	</thead>
@@ -30,7 +31,7 @@
 		{% if object_list %}
 		{% for objeto in object_list %}
 		<tr class="table-Light">
-			<td>{{ objeto.id }}</td>
+			<td name="buscado">{{ objeto.id }}</td>
 			<td>{{ objeto.nombre }}</td>
 			<td>{{ objeto.descripcion }}</td>
 			<td>{{ objeto.autor }}</td>
@@ -47,10 +48,16 @@
                     <a  class="btn btn-Primary" href="{% url 'objetos:editaObjetos' objeto.id %}">Editar</a>
                     <a  class="btn btn-warning" href="{% url 'objetos:borraObjetos' objeto.id %}" >Eliminar</a>
 					{% endif %}
-                    <a  class="btn btn-success" href="{% url 'objetos:down' objeto.archivo %}" >Descargar</a>
+
                 </div>
 
             </td>
+			<td>
+				<div>
+					<a  class="btn btn-success" href="{% url 'objetos:down' objeto.archivo %}" >Descargar</a>
+					<a  class="btn btn-secondary" type="submit" href="{% url 'objetos:listaComents' objeto.id %}" >Comentario</a>
+				</div>
+			</td>
 
 		</tr>
 		{% endfor %}

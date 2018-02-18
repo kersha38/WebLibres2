@@ -2,6 +2,7 @@ from django.db import models
 
 # Create your models here.
 from django.db import models
+
 class tema(models.Model):
     Nombre_tema=models.CharField(max_length=30)
     def __str__(self):
@@ -17,6 +18,7 @@ class objetoA(models.Model):
     palabras_clave=models.CharField(max_length=30, null=True, blank=True)
     archivo=models.FileField(null=True, blank=True )
     tema=models.ForeignKey(tema,null=True,blank=True,on_delete=None)
+    sube=models.CharField(max_length=20,null=True,blank=True)
 
     def __str__(self):
         return self.nombre
@@ -27,3 +29,7 @@ class archivoCatalogador(models.Model):
 
     #archivo con el objeto exelearning
     archElp=models.FileField()
+
+class comentario(models.Model):
+    comentariotxt=models.CharField(max_length=256)
+    objeto=models.ForeignKey(objetoA,null=True, blank=True, unique=False)

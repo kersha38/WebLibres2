@@ -1,8 +1,8 @@
-from django.shortcuts import render
-from apps.objeto.models import objetoA
+from django.shortcuts import render, redirect
+from apps.objeto.models import objetoA, comentario
 from django.views.generic import ListView,CreateView,UpdateView,DeleteView,TemplateView
 from django.core.urlresolvers import reverse_lazy
-from apps.objeto.forms import objetoAForm,archCatForm
+from apps.objeto.forms import objetoAForm,archCatForm, comentFrom
 from django.http import HttpResponse, Http404
 import os
 from django.conf import settings
@@ -141,3 +141,27 @@ class BuscarView(TemplateView):
 
 
         return render(request,'objeto/baseobjeto.html',{'object_list':object_list})
+
+def nuevocoment(request, id_objeto):
+
+    coment = comentario.objects.get(comentariotxt=' ')
+    if request.method == 'GET':
+        form = comentFrom(instance=coment)
+    else:
+        form = comentFrom(request.POST, instance=coment)
+        if form.is_valid():
+            form.save()
+            ob = objetoA.objects.get(id=id_objeto)
+            comentario.objects.create(objeto=ob, comentariotxt=' ')
+
+        return redirect('objetos:listaObjetos')
+    return render(request, 'objeto/comentario_form.html', {'form':form})
+
+def listaCo(request, id_objeto):
+    ob = objetoA.objects.get(id=id_objeto)
+    object_list2 = comentario.objects.filter(objeto__exact=ob).exclude(comentariotxt__exact=' ')
+    if object_list2:
+        return render(request, 'objeto/baseComentario.html', {'object_list': object_list2})
+    else:
+        return nuevocoment(request, id_objeto)
+

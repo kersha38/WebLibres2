@@ -1,6 +1,7 @@
 from django.conf.urls import url
 from apps.objeto.views import listaObjetos,crearObjeto,editarObjeto,borrarObjeto\
-    ,upload_file,download,down2,auto,BuscarView
+    ,upload_file,download,down2,auto,BuscarView\
+    ,nuevocoment,listaCo
 from django.contrib.auth.decorators import login_required,permission_required
 
 urlpatterns = [
@@ -13,4 +14,7 @@ urlpatterns = [
     url(r'crear2',upload_file, name='creaObj'),
     url(r'buscar',BuscarView.as_view(), name='buscar'),
     url(r'auto',auto, name='autoo'),
+
+    url(r'coment/(?P<id_objeto>\d+)/$',nuevocoment , name='newComent'),
+    url(r'listComent/(?P<id_objeto>\d+)/$',listaCo, name='listaComents'),
 ]

@@ -1,0 +1,16 @@
+{% extends 'base/base.html' %}
+{% block title %}Crear nuevo comentario{% endblock %}
+{% block cabeza %}Aqui tu comentario{% endblock %}
+
+{% block content %}
+
+{% endblock %}
+
+{% block pie %}
+<div class="jumbotron" style="max-width: 40rem; margin-left: 200px; background-color:White">
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Comentar</button>
+</form>
+</div>{% endblock %}
