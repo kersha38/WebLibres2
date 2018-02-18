@@ -27,6 +27,7 @@ class crearObjeto(PermissionRequiredMixin,CreateView):
     template_name = 'objeto/objetoA_form.html'
     success_url = reverse_lazy('objetos:listaObjetos')
 
+@permission_required('usuario.esProfesor', login_url=reverse_lazy('objetos:listaObjetos'))
 def upload_file(request):
     if request.method == 'POST':
         form = objetoAForm(request.POST, request.FILES)
@@ -38,13 +39,17 @@ def upload_file(request):
         form = objetoAForm()
     return render(request, 'objeto/objetoA_form.html', {'form': form})
 
-class editarObjeto(UpdateView):
+class editarObjeto(PermissionRequiredMixin,UpdateView):
+    permission_required = 'usuario.esProfesor'
+    login_url = reverse_lazy('objetos:listaObjetos')
     model= objetoA
     form_class = objetoAForm
     template_name = 'objeto/objetoA_form.html'
     success_url = reverse_lazy('objetos:listaObjetos')
 
-class borrarObjeto(DeleteView):
+class borrarObjeto(PermissionRequiredMixin,DeleteView):
+    permission_required = 'usuario.esProfesor'
+    login_url = reverse_lazy('objetos:listaObjetos')
     model=objetoA
     template_name = 'objeto/borrarObj.html'
     success_url = reverse_lazy('objetos:listaObjetos')
@@ -68,6 +73,7 @@ def down2(request, path_to_file):
 
 
 # cataloga automaticamente
+@permission_required('usuario.esProfesor', login_url=reverse_lazy('objetos:listaObjetos'))
 def auto(request):
     if request.method == 'POST':
         form = archCatForm(request.POST, request.FILES)

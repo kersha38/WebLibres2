@@ -45,8 +45,10 @@
             <td>
                 <div>
 					{% if perms.usuario.esProfesor %}
+					{% if request.user.username == objeto.sube.username %}
                     <a  class="btn btn-Primary" href="{% url 'objetos:editaObjetos' objeto.id %}">Editar</a>
                     <a  class="btn btn-warning" href="{% url 'objetos:borraObjetos' objeto.id %}" >Eliminar</a>
+					{% endif %}
 					{% endif %}
 
                 </div>

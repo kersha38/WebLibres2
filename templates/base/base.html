@@ -79,7 +79,7 @@
 					</ul>
 				</li>
               </li>
-
+				{% if perms.usuario.esProfesor %}
 				<li class="nav-item">
 				<li><a href="">Catalogar</a>
 					<ul>
@@ -89,6 +89,7 @@
 					</ul>
 				</li>
               </li>
+				{% endif %}
 			</ul>
 
     </div>
