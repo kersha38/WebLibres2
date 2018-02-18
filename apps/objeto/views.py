@@ -1,3 +1,4 @@
+from django.contrib.auth.models import User
 from django.shortcuts import render, redirect
 from apps.objeto.models import objetoA, comentario
 from django.views.generic import ListView,CreateView,UpdateView,DeleteView,TemplateView
@@ -18,23 +19,22 @@ class listaObjetos(ListView):
     model=objetoA
     template_name='objeto/baseobjeto.html'
 
-
-class crearObjeto(PermissionRequiredMixin,CreateView):
-    permission_required='usuario.esProfesor'
-    login_url = reverse_lazy('objetos:listaObjetos')
-    model = objetoA
-    form_class =objetoAForm
-    template_name = 'objeto/objetoA_form.html'
-    success_url = reverse_lazy('objetos:listaObjetos')
-
 @permission_required('usuario.esProfesor', login_url=reverse_lazy('objetos:listaObjetos'))
 def upload_file(request):
     if request.method == 'POST':
         form = objetoAForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
+            # asigno user
+            ob=objetoA.objects.latest('id')
+            instancia=objetoA.objects.get(id=ob.id)
+            instaR = request.user.username
+            subeR = User.objects.get(username=instaR)
+            instancia.sube=subeR
+            instancia.save()
 
-            return reverse_lazy('objetos:listaObjetos')
+            object_list2 = objetoA.objects.all()
+            return render(request, 'objeto/baseobjeto.html', {'object_list': object_list2})
     else:
         form = objetoAForm()
     return render(request, 'objeto/objetoA_form.html', {'form': form})
@@ -84,6 +84,8 @@ def auto(request):
             descripcionR=''
             palabras_claR=''
             fechaR=str(date.today().year)+'-'+str(date.today().month)+'-'+str(date.today().day)
+            instaR=request.user.username
+            subeR=User.objects.get(username=instaR)
             # archivo html
             archCatR=str(form.cleaned_data['archIndex'])
             archElpR = str(form.cleaned_data['archElp'])
@@ -123,7 +125,8 @@ def auto(request):
                 fechaCreacion=fechaR,
                 fechaIngreso=fechaR,
                 palabras_clave=palabras_claR,
-                archivo=archElpR)
+                archivo=archElpR,
+                sube=subeR)
 
             # foo_instance.save()
 
