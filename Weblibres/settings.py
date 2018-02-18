@@ -138,5 +138,5 @@ EMAIL_HOST_USER = 'proyecto.libres001@gmail.com'
 EMAIL_HOST_PASSWORD = 'ProyectoLibres001'
 #EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 
-LOGIN_REDIRECT_URL = reverse_lazy('objetos:listaObjetos')
+LOGIN_REDIRECT_URL = reverse_lazy('repositorio:home')
 LOGOUT_REDIRECT_URL = reverse_lazy('login')
