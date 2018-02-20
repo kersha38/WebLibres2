@@ -101,3 +101,9 @@ ENV/
 .idea
 env
 *.elp
+env_/pip-selfcheck.json
+env_/pyvenv.cfg
+env_/Scripts/deactivate.bat
+env_/Scripts/django-admin.py
+env_/Scripts/Activate.ps1
+env_/Scripts/activate.bat
