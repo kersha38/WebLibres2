@@ -4,8 +4,14 @@ from django.contrib.auth.models import User
 class Facultad(models.Model):
     nombreF=models.CharField(max_length=30)
 
+    def __str__(self):
+        return  self.nombreF
+
 class Departamento(models.Model):
     nombreD = models.CharField(max_length=30)
+
+    def __str__(self):
+        return  self.nombreD
 
 class RegistroUsuario(models.Model):
     username=models.CharField(max_length=15)

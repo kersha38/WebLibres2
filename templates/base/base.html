@@ -74,7 +74,7 @@
 				<li><a href="">Objetos de aprendizaje</a>
 					<ul>
 						{% if perms.usuario.esProfesor %}
-						<li><a href="http://localhost:51235/newPackage">Crear</a></li>
+						<li><a target="_blank" href="http://localhost:51235/newPackage">Crear</a></li>
 						<li><a href="{% url 'repositorio:herramienta' %}">Herramientas Adicionales</a></li>
 						{% endif %}
 						<li><a href="{% url 'objetos:listaObjetos' %}">Listar</a></li>
@@ -103,7 +103,7 @@
 				</form>
 
 
-				<li><a href="{% url 'logout' %}">Salir</a></li>
+				<li><a href="{% url 'logout' %}">{{ request.user.username }} Salir</a></li>
     </nav>
 
 {% block cabeza %}

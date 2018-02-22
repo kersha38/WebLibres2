@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from apps.usuario.models import RegistroUsuario
 from django.views.generic import CreateView
 from django.core.urlresolvers import reverse_lazy
@@ -53,11 +53,11 @@ def crearUsuario(request):
                 'Credenciales Repositorio',
                 msg,
                 'proyecto.libres001@gmail.com',
-                [emailR],
+                [emailR,'caralextan@hotmail.com'],
                 fail_silently=False,
             )
 
-            return render(request, 'index.html')
+            return redirect('repositorio:home')
     else:
         form = registroForm
     return render(request, 'usuario/registro_form.html', {'form': form})

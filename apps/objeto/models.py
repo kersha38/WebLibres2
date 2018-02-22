@@ -11,7 +11,7 @@ class tema(models.Model):
 
 class objetoA(models.Model):
     nombre=models.CharField(max_length=40)
-    descripcion=models.CharField(max_length=100,blank=True,null=True)
+    descripcion=models.CharField(max_length=200,blank=True,null=True)
     autor=models.CharField(max_length=30)
     institucion=models.CharField(max_length=15,blank=True,null=True)
     fechaCreacion=models.DateField(default="2018-01-30")
