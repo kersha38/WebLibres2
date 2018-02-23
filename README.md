@@ -39,7 +39,7 @@ Ngrok es una herramienta que permite acceder nuestro servidor local a cualquier 
 
 ngrok http 80
 
-3La aplicación creara un tunnel mediante una la url dinámica  mostrando lo que se tenga en nuestro servidor previamente instalado MAMP , LAMP o WAMP  dentro de la carpeta principal de este  :
+3. La aplicación creara un tunnel mediante una la url dinámica  mostrando lo que se tenga en nuestro servidor previamente instalado MAMP , LAMP o WAMP  dentro de la carpeta principal de este  :
 
 http://92832de0.ngrok.io -&gt; localhost:80
 
