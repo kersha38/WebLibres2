@@ -1,5 +1,5 @@
-#SITEMA DE GESTION DE OBJETOS DE APRENDIZAJE 
-#Integrantes:
+# SISTEMA DE GESTION DE OBJETOS DE APRENDIZAJE 
+# Integrantes:
 Andrea Villacis
 Carlos Gutierrez
 
@@ -30,7 +30,7 @@ haciendo uso de un servidor web.
 aprendizaje.
 
 
-#INSTALACION PARA LA NUBE
+# INSTALACION PARA LA NUBE
 Ngrok es una herramienta que permite acceder nuestro servidor local a cualquier persona en internet con la que compartamos una url generada dinamicamente  , esto es muy útil por ejemplo cuando necesitamos mostrar avances constantemente en sitios que se encuentran en etapa de desarrollo o cuando trabajamos con un equipo de desarrolladores  de forma remota .
 
 1. Nos dirigimos al internet y nos descargamos Ngrok
@@ -43,6 +43,8 @@ ngrok http 80
 
 http://92832de0.ngrok.io -&gt; localhost:80
 
+# Manuales
 
-
-
+los manuales se encuentran en el siguiente link
+manual de instalacion.doc que se encuentra en el master
+Manual_de_usuario_.docx que se encuntra en el master
