@@ -45,6 +45,8 @@ http://92832de0.ngrok.io -&gt; localhost:80
 
 # Manuales
 
-los manuales se encuentran en el siguiente link
-manual de instalacion.doc que se encuentra en el master
-Manual_de_usuario_.docx que se encuntra en el master
+los manuales se encuentran en:
+
+Manual de instalacion.doc que se encuentra en el master y el carlosv2.
+Manual_de_usuario_.docx que se encuntra en el master y el carlosv2.
+
