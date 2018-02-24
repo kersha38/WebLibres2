@@ -1,6 +1,8 @@
 # SISTEMA DE GESTION DE OBJETOS DE APRENDIZAJE 
 # Integrantes:
+
 Andrea Villacis
+
 Carlos Gutierrez
 
 1. Tema
